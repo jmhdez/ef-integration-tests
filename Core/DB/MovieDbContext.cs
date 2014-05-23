@@ -13,7 +13,7 @@ namespace Koalite.EFSample.DB
         }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Person> Companies { get; set; }
+        public DbSet<Person> People { get; set; }
         public DbSet<Country> Countries { get; set; }
 
 	    protected override void OnModelCreating(DbModelBuilder modelBuilder)

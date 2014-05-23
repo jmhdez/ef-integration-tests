@@ -24,8 +24,8 @@ namespace Koalite.EFSample.DB
 			var juanma = new Person("Juanma Bajo Ulloa");
 			var james = new Person("James Cameron");
 
-			dbContext.Companies.Add(juanma);
-			dbContext.Companies.Add(james);
+			dbContext.People.Add(juanma);
+			dbContext.People.Add(james);
 
 			var airbag = new Movie("Airbag", 1997, juanma, spain);
 			var terminator = new Movie("Terminator", 1984, james, usa);
