@@ -23,6 +23,8 @@ namespace Tests
 				context.Countries.Add(spain);
 				context.Countries.Add(usa);
 				context.People.Add(lucas);
+
+				context.SaveChanges();
 			});
 		}
 
@@ -32,17 +34,29 @@ namespace Tests
 			// pero hace el test más resistente ante cambios de esquema o relaciones entre
 			// entidades. Si te preocupa *mucho* el rendimiento, puedes borrar a mano las
 			// tablas necesarias
-			Execute(context => context.Movies.RemoveRange(context.Movies.ToList()));
+			Execute(context =>
+			{
+				context.Movies.RemoveRange(context.Movies.ToList());
+				context.SaveChanges();
+			});
 		}
 
 		private GrossByCountryAndYearQuery.Result[] GetResults(Country country)
 		{
-			return Query(context => new GrossByCountryAndYearQuery(country.Name).Execute(context).ToArray());
+			var query = new GrossByCountryAndYearQuery(country.Name);
+			return Execute(context => query.Execute(context)).ToArray();
 		}
 
 		private void AddMovie(string title, int year, decimal gross, params Country[] countries)
 		{
-			Execute(context => context.Movies.Add(new Movie(title, year, lucas, countries) { Gross = gross }));
+			// Esto no es lo óptimo porque usamos una tx para guardar cada película, perdiendo
+			// el UoW y eficiencia, pero a cambio los tests quedan más legibles. 
+			// En este caso, prefiero legibilidad.
+			Execute(context =>
+			{
+				context.Movies.Add(new Movie(title, year, lucas, countries) {Gross = gross});
+				context.SaveChanges();
+			});
 		}
 
 		[Test]

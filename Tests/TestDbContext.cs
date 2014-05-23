@@ -1,4 +1,4 @@
-﻿using Koalite.EFSample.DB;
+using Koalite.EFSample.DB;
 
 namespace Tests
 {
