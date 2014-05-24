@@ -18,7 +18,7 @@ namespace Tests
 		}
 
 		[SetUp]
-		protected virtual void BeforeEach()
+		public virtual void BeforeEach()
 		{
 		}
 
