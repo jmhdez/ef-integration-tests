@@ -28,7 +28,7 @@ namespace Tests
 			});
 		}
 
-		protected override void BeforeEach()
+		public override void BeforeEach()
 		{
 			// Esto no es lo más eficiente porque carga las entidades antes de borrarlas
 			// pero hace el test más resistente ante cambios de esquema o relaciones entre
