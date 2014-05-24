@@ -49,7 +49,7 @@ namespace Tests
 
 		private void AddMovie(string title, int year, decimal gross, params Country[] countries)
 		{
-			// Esto no es lo óptimo porque usamos una tx para guardar cada película, perdiendo
+			// Esto no debería hacerse porque usamos una tx para guardar cada película, perdiendo
 			// el UoW y eficiencia, pero a cambio los tests quedan más legibles. 
 			// En este caso, prefiero legibilidad.
 			Execute(context =>

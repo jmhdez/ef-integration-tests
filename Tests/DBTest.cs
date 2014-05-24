@@ -10,7 +10,6 @@ namespace Tests
 		public void TestFixtureSetup()
 		{
 			Execute(DbTools.CleanDatabase);
-
 			BeforeAll();
 		}
 
